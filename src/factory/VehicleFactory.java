@@ -1,3 +1,10 @@
+package factory;
+
+import model.Car;
+import model.ElectricBike;
+import model.Motorcycle;
+import model.Vehicle;
+import strategy.PricingStrategy;
 
 public class VehicleFactory {
 
@@ -46,3 +53,4 @@ public class VehicleFactory {
         }
     }
 }
+

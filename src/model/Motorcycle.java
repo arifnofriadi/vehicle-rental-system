@@ -1,3 +1,6 @@
+package model;
+
+import strategy.PricingStrategy;
 
 public class Motorcycle extends Vehicle {
 
@@ -19,3 +22,4 @@ public class Motorcycle extends Vehicle {
         return 75000;
     }
 }
+
