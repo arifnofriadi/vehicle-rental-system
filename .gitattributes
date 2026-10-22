@@ -1,0 +1,5 @@
+# Pastikan file script bash selalu berakhiran LF (Unix) agar tidak error di Linux/macOS
+*.sh text eol=lf
+
+# Pastikan file batch Windows selalu berakhiran CRLF
+*.bat text eol=crlf

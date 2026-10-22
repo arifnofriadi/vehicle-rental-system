@@ -46,6 +46,7 @@ vehicle-rental-system/
 │   └── Main.java     # Entry point aplikasi
 ├── run.bat           # Script 1-klik untuk Windows CMD
 ├── run.ps1           # Script 1-klik untuk PowerShell
+├── run.sh            # Script 1-klik untuk Linux / macOS
 ├── task.md           # Master blueprint & checklist tugas tim
 └── README.md
 ```
@@ -56,11 +57,15 @@ vehicle-rental-system/
 
 ### Opsi A: Menggunakan Script Pelari (Paling Praktis)
 
-- **PowerShell:**
+- **Linux / macOS:**
+  ```bash
+  ./run.sh
+  ```
+- **Windows (PowerShell):**
   ```powershell
   .\run.ps1
   ```
-- **Command Prompt:**
+- **Windows (CMD):**
   ```cmd
   run.bat
   ```

@@ -82,6 +82,7 @@ vehicle-rental-system/
 │
 ├── run.bat                           # Script 1-klik untuk compile & run di CMD/Windows
 ├── run.ps1                           # Script 1-klik untuk compile & run di PowerShell
+├── run.sh                            # Script 1-klik untuk compile & run di Linux/macOS
 ├── task.md                           # Master blueprint & checklist tugas tim
 └── README.md                         # Dokumentasi umum repositori
 ```
@@ -253,13 +254,19 @@ CREATE TABLE IF NOT EXISTS rentals (
 
 ### Cara 1: Menggunakan Script Otomatis (Direkomendasikan)
 
-- **PowerShell:**
+- **Linux / macOS:**
+
+```bash
+./run.sh
+```
+
+- **Windows (PowerShell):**
 
 ```powershell
 .\run.ps1
 ```
 
-- **Command Prompt (CMD):**
+- **Windows (Command Prompt / CMD):**
 
 ```cmd
 run.bat
