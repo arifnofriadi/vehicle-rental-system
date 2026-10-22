@@ -1,3 +1,6 @@
+package model;
+
+import strategy.PricingStrategy;
 
 public class ElectricBike extends Vehicle {
 
@@ -19,3 +22,4 @@ public class ElectricBike extends Vehicle {
         return 50000;
     }
 }
+

@@ -1,7 +1,10 @@
+package model;
+
+import strategy.PricingStrategy;
 
 public abstract class Vehicle {
 
-    // Atribut sesuai UML
+    // Atribut sesuai prinsip Enkapsulasi
     protected String id;
     protected String brand;
     protected String model;
@@ -21,17 +24,21 @@ public abstract class Vehicle {
         this.pricingStrategy = pricingStrategy;
     }
 
-    // Method abstrak
+    // Method abstrak (Abstraksi & Polimorfisme)
     public abstract String getType();
 
     public abstract double getBaseDailyRate();
 
-    // Menghitung biaya sewa
+    // Menghitung biaya sewa dengan Strategy Pattern
     public double calculateRentalCost(int days) {
         if (days <= 0) {
             throw new IllegalArgumentException(
                 "Durasi sewa harus lebih dari 0 hari."
             );
+        }
+
+        if (pricingStrategy == null) {
+            return getBaseDailyRate() * days;
         }
 
         return pricingStrategy.calculate(
@@ -44,7 +51,7 @@ public abstract class Vehicle {
         this.available = available;
     }
 
-    // Mengatur strategi harga
+    // Mengatur strategi harga (Dukungan perubahan strategi secara dinamis)
     public void setPricingStrategy(PricingStrategy pricingStrategy) {
         this.pricingStrategy = pricingStrategy;
     }
@@ -70,6 +77,14 @@ public abstract class Vehicle {
         return available;
     }
 
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public PricingStrategy getPricingStrategy() {
+        return pricingStrategy;
+    }
+
     @Override
     public String toString() {
         return getType()
@@ -83,3 +98,4 @@ public abstract class Vehicle {
             + (available ? "Tersedia" : "Disewa");
     }
 }
+
