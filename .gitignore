@@ -1,6 +1,6 @@
 *.class
 bin/
+out/
+sources.txt
 .DS_Store
 *.db
-*.db
-
