@@ -210,47 +210,44 @@ public class ReturnService {
                 + "WHERE status = 'DISEWA' "
                 + "ORDER BY created_at DESC";
 
+        String rowFormat = "%-12s %-16s %-14s %-12s %8s %14s %-20s%n";
+
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
-            System.out.println("\n"
-                    + "==================================================");
-            System.out.println("          DAFTAR SEWA AKTIF");
-            System.out.println(
-                    "==================================================");
+            System.out.println("\n          DAFTAR SEWA AKTIF");
 
             boolean found = false;
 
             while (rs.next()) {
-                found = true;
+                if (!found) {
+                    System.out.println("-".repeat(100));
+                    System.out.printf(rowFormat,
+                            "ID Transaksi", "Nama Penyewa", "No. Telepon",
+                            "ID Kendaraan", "Durasi", "Total Biaya",
+                            "Tanggal Sewa");
+                    System.out.println("-".repeat(100));
+                    found = true;
+                }
 
-                System.out.println("ID Transaksi  : "
-                        + rs.getString("rental_id"));
-                System.out.println("Nama Penyewa : "
-                        + rs.getString("customer_name"));
-                System.out.println("No. Telepon  : "
-                        + rs.getString("customer_phone"));
-                System.out.println("ID Kendaraan : "
-                        + rs.getString("vehicle_id"));
-                System.out.println("Durasi Sewa  : "
-                        + rs.getInt("rental_days") + " hari");
-                System.out.printf("Total Biaya  : Rp%,.0f%n",
-                        rs.getDouble("total_cost"));
-                System.out.println("Tanggal Sewa : "
-                        + rs.getString("created_at"));
-                System.out.println(
-                        "--------------------------------------------------");
+                System.out.printf(rowFormat,
+                        rs.getString("rental_id"),
+                        rs.getString("customer_name"),
+                        rs.getString("customer_phone"),
+                        rs.getString("vehicle_id"),
+                        rs.getInt("rental_days") + " hari",
+                        String.format("Rp%,.0f", rs.getDouble("total_cost")),
+                        rs.getString("created_at"));
             }
 
             if (!found) {
                 System.out.println(
                         "Tidak ada transaksi sewa yang masih aktif."
                 );
+            } else {
+                System.out.println("-".repeat(100));
             }
-
-            System.out.println(
-                    "==================================================\n");
 
         } catch (SQLException e) {
             throw new RentalValidationException(

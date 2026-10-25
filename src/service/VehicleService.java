@@ -30,7 +30,10 @@ public class VehicleService {
         displayVehicles(sql);
     }
 
-    // Membaca dan menampilkan kendaraan dari database
+    private static final String ROW_FORMAT =
+        "%-10s %-16s %-10s %-12s %-12s %14s %-10s%n";
+
+    // Membaca dan menampilkan kendaraan dari database dalam bentuk tabel
     private void displayVehicles(String sql) {
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -39,17 +42,28 @@ public class VehicleService {
             boolean found = false;
 
             while (rs.next()) {
-                Vehicle vehicle = mapVehicle(rs);
-
                 if (!found) {
+                    printHeader();
                     found = true;
                 }
 
-                System.out.println(vehicle);
+                Vehicle vehicle = mapVehicle(rs);
+
+                System.out.printf(ROW_FORMAT,
+                    vehicle.getId(),
+                    vehicle.getType(),
+                    vehicle.getBrand(),
+                    vehicle.getModel(),
+                    vehicle.getPlateNumber(),
+                    String.format("Rp%,.0f", vehicle.getBaseDailyRate()),
+                    vehicle.isAvailable() ? "Tersedia" : "Disewa"
+                );
             }
 
             if (!found) {
                 System.out.println("Tidak ada kendaraan yang ditemukan.");
+            } else {
+                System.out.println("-".repeat(98));
             }
 
         } catch (SQLException e) {
@@ -57,6 +71,13 @@ public class VehicleService {
                 "Gagal mengambil data kendaraan dari database.", e
             );
         }
+    }
+
+    private void printHeader() {
+        System.out.println("-".repeat(98));
+        System.out.printf(ROW_FORMAT,
+            "ID", "Jenis", "Merk", "Model", "Plat", "Tarif/Hari", "Status");
+        System.out.println("-".repeat(98));
     }
 
     // 3. Mengambil kendaraan berdasarkan ID
