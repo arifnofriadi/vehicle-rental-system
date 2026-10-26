@@ -1,13 +1,8 @@
-/**
- * Paket ini berisi layanan untuk memproses pengembalian kendaraan
- * dan menampilkan daftar transaksi sewa yang masih aktif.
- */
 package service;
 
 import config.DatabaseConnection;
 import exception.RentalValidationException;
 import exception.VehicleNotFoundException;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
