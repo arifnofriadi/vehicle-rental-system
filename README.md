@@ -1,4 +1,4 @@
-# Aplikasi Rental Kendaraan — UAS OOP
+# Aplikasi Rental Kendaraan - UAS OOP
 
 Proyek kelompok UAS SI204 Object-Oriented Programming.  
 Skenario: **Aplikasi Rental Kendaraan** (sewa motor, mobil, dan sepeda listrik).
@@ -22,7 +22,7 @@ Skenario: **Aplikasi Rental Kendaraan** (sewa motor, mobil, dan sepeda listrik).
 - [x] *Abstract class* & *interface*
 - [x] Exception handling (input tidak valid tidak menyebabkan aplikasi crash)
 - [x] 2 Design Pattern terpilih: **Factory Pattern** & **Strategy Pattern**
-- [ ] Diagram kelas UML (tersimpan di `docs/`)
+- [x] Diagram kelas UML (tersimpan di `docs/`)
 - [x] Database lokal SQLite (zero-config auto-creation & auto-seed)
 
 ---
