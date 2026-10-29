@@ -14,7 +14,8 @@ public class CostCalculatorService {
     // Diskon 10% otomatis berlaku untuk sewa 3 hari atau lebih
     public double calculateCost(Vehicle vehicle, int days) {
         PricingStrategy strategy = (days >= 3) ? discount : regular;
-        return strategy.calculate(vehicle.getBaseDailyRate(), days);
+        vehicle.setPricingStrategy(strategy);
+        return vehicle.calculateRentalCost(days);
     }
 
     public void printReceipt(RentalTransaction trx, Vehicle vehicle) {
